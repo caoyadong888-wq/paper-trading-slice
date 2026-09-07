@@ -1,6 +1,6 @@
 # paper-trading-slice
 
-Paper-only trading slice: cash ledger, market fills, tests, runbook.
+Paper-only trading slice: cash ledger, market fills, decision-logic assessment, tests, runbook.
 
 **Not a live desk.** No brokerage API, no order proxy, no PnL promises.
 
@@ -9,9 +9,15 @@ Paper-only trading slice: cash ledger, market fills, tests, runbook.
 ```
 python -m pytest -q
 python paper_broker.py
+python decision_logic.py
 ```
 
 Python 3.9+ (stdlib + pytest).
+
+## ~2h assessment
+
+`decision_logic.py` — fixture prices → BUY/HOLD/SELL → paper fill + ledger.
+Rule: buy one lot after a ≥3% bounce from the trough if flat; sell all after a ≥3% giveback from the peak if long.
 
 ## Scope
 
